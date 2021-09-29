@@ -4,7 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #6777EF;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -3649,6 +3649,7 @@ fieldset:disabled a.btn {
 .btn-block-30 {
   display: block;
   width: 30%;
+  min-width: 150px;
 }
 
 .btn-block+.btn-block {
