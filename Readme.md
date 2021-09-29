@@ -259,7 +259,7 @@ log_error = /var/log/mysql/error.log
 # note: if you are setting up a replication slave, see README.Debian about
 #       other settings you may need to change.
 #server-id              = 1
-#log_bin                        = /var/log/mysql/mysql-bin.log
+#log_bin    = /var/log/mysql/mysql-bin.log
 expire_logs_days        = 10
 max_binlog_size   = 100M
 #binlog_do_db           = include_database_name
@@ -322,15 +322,21 @@ create user 'radius'@'localhost' identified by 'radiuspassword';
 grant all privileges on radius.* to 'radius'@'localhost';
 flush privileges;
 ```
+## 3. Install IAMRadius
+### Clone IAMRadius
+```
+cd /var/www/
+git clone https://github.com/ballcoe/iamradius
+```
 
-## 3. Install and Configure FreeRADIUS
+## 4. Install and Configure FreeRADIUS
 ### Install FreeRADIUS v3.0
 ```
 sudo apt-get install freeradius freeradius-mysql freeradius-utils -y
 ```
-### Import the freeradius MySQL database scheme
+### Dump Mysql IAM Radius
 ```
-mysql -u root -p radius < /etc/freeradius/3.0/mods-config/sql/main/mysql/schema.sql
+mysql -u root -p radius < /var/www/iamradius/sql/iamradius.sql
 ```
 ### Check tables created
 ```
@@ -360,6 +366,27 @@ password = "<password>"
 radius_db = "radius"
 }
 
+mysql {
+	# If any of the files below are set, TLS encryption is enabled
+    #tls {
+        #ca_file = "/etc/ssl/certs/my_ca.crt"
+        #ca_path = "/etc/ssl/certs/"
+    #certificate_file = "/etc/ssl/certs/private/client.crt"
+    #private_key_file = "/etc/ssl/certs/private/client.key"
+    #cipher = "DHE-RSA-AES256-SHA:AES128-SHA"
+
+    #tls_required = no
+    #tls_check_cert = no
+    #tls_check_cert_cn = no
+    #}
+
+    # If yes, (or auto and libmysqlclient reports warnings are
+    # available), will retrieve and log additional warnings from
+    # the server if an error has occured. Defaults to 'auto'
+    warnings = auto
+}
+
+
 # Set to ‘yes’ to read radius clients from the database (‘nas’ table)
 # Clients will ONLY be read on server startup.
 read_clients = yes
@@ -382,12 +409,12 @@ _____________________________________
     client localhost_ipv6 {                 #line 220
         ipv6addr        = ::1               #line 221
         secret          = <secert key>      #line 222
-    }                                       #line 223
+    }                   #line 223
 *
     client private-network-1 {              #line 241
         ipaddr          = 192.168.0.0/16    #line 242
         secret          = <secert key>      #line 243
-    }                                       #line 244
+    }                   #line 244
 *
     
 ```
@@ -398,14 +425,4 @@ systemctl restart freeradius.service
 ### Enable freeradius service
 ```
 update-rc.d freeradius enable
-```
-## 4. Install IAMRadius
-### Dump Mysql IAM Radius
-```
-mysql -u root -p radius < iamradius.sql
-```
-### Clone IAMRadius
-```
-cd /var/www/
-git clone https://github.com/ballcoe/iamradius
 ```
