@@ -1,0 +1,81 @@
+/**-------------------------------------------------
+ * Simple Captcha System
+ * @package Code Snippets
+ * @link http://rhythmshahriar.com/codes/
+ * @author Rhythm Shahriar <rhy@rhythmshahriar.com>
+ * @link http://rhythmshahriar.com
+ * @copyright Copyright © 2017, Rhythm Shahriar
+ ---------------------------------------------------*/
+#captcha .title {
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+    padding: 30px 0;
+}
+
+#captcha .captcha-from {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+#captcha .captcha-from label{
+    font-weight: normal;
+}
+
+#captcha .form-control{
+    border-radius: 0;
+}
+#captcha .input-group-addon {
+    border-top-left-radius: 0 ;
+    border-bottom-left-radius: 0;
+}
+
+#captcha .captcha-group div{
+    display: inline-block;
+}
+
+#captcha .captcha-code .ca-code{
+    width: 250px;
+    height: 60px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    border: 1px solid #CCC;
+}
+
+#captcha .captcha-code .ca-code .dynamic-code{
+    text-shadow: 4px 4px 5px rgba(150, 150, 150, 1);
+    color: #2d2d2d;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 900;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently */
+    cursor: help;
+}
+
+#captcha .captcha-code .ca-code .dynamic-code:first-letter{
+    font-size: 48px;
+}
+
+#captcha .captcha-code .captcha-reload{
+    cursor: pointer;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 0;
+    max-width: 36px;
+}
+
+#captcha .captcha-code .captcha-reload:hover{
+    color: #00B16A;
+}
+
+#captcha #captcha-input{
+    margin-top: 10px;
+}
