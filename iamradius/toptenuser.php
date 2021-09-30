@@ -78,6 +78,7 @@ active
                       <input type="date" onchange="changedate()" class="form-control" id="dayselect" value="<?php echo date('Y-m-d'); ?>">
                     </div>
                   </div>
+                </div>
             </div>
             <br>
             <div id="showdata">
