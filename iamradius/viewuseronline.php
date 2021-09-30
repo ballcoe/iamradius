@@ -67,7 +67,7 @@ active
               <li class="breadcrumb-item active" aria-current="page">สมาชิกที่ออนไลน์ขณะนี้</li>
             </ol>
           </div>
-            <div class="card card-register mx-auto mt-5">
+            <div class="card shadow mb-4">
               <div class="card-header">
               <i class="fas fa-table"></i>
               รายชื่อผู้ใช้ที่กำลังใช้งาน</div>

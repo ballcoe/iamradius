@@ -106,7 +106,7 @@ active
               <li class="breadcrumb-item active" aria-current="page">สมาชิกที่ยังไม่ได้จัดกลุ่ม</li>
             </ol>
           </div>
-            <div class="card card-register mx-auto mt-5">
+            <div class="card shadow mb-4">
               <div class="card-body">
                 <div class="form-group">
                   <div class="form-label-group">

@@ -67,10 +67,9 @@ active
               <li class="breadcrumb-item active" aria-current="page">สถานะของเซิร์ฟเวอร์</li>
             </ol>
           </div>
-        <div class="card card-register mx-auto mt-5">
-          <div class="card-body">
+<div class="card shadow mb-4">
+        <div class="card-body">
           <!--<h1>กำลังพัฒนา</h1>-->
-          <div>
             <center>
             
 <?php
@@ -414,38 +413,40 @@ function get_mask_addr($ifname) {
 
         echo "\t</table>\n";
 
-function check_service($sname) {
-	if ($sname != '') {
-		system("pgrep ".escapeshellarg($sname)." >/dev/null 2>&1", $ret_service);
-		if ($ret_service == 0) {
-			return "Enabled";
-		} else {
-			return "Disabled";
-		}
-	} else {
-		return "no service name";
-	}
-}
+                function check_service($sname) {
+                        if ($sname != '') {
+                                system("pgrep ".escapeshellarg($sname)." >/dev/null 2>&1", $ret_service);
+                                if ($ret_service == 0) {
+                                        return "Enabled";
+                                } else {
+                                        return "Disabled";
+                                }
+                        } else {
+                                return "no service name";
+                        }
+                }
 
-?>
+                ?>
 
-<?php
-	echo "<h3>Service Status</h3>";
-?>
+                        <?php
+                                echo "<h3>Service Status</h3>";
+                        ?>
 
-<table class='table table-bordered' id='dataTable2' width='100%'' cellspacing='0'>
-  <tr>
-    <td width='20%'> Radius </td>
-    <td><span class='sleft'><?php echo check_service("radius"); ?></span> </td>
-  </tr>
-  <tr>
-    <td width='20%'> Mysql </td>
-    <td><span class='sleft'><?php echo check_service("mysql");  ?></span> </td>
-  </tr>
-</table>
+                <table class='table table-bordered' id='dataTable2' width='100%'' cellspacing='0'>
+                <tr>
+                <td width='20%'> Radius </td>
+                <td><span class='sleft'><?php echo check_service("radius"); ?></span> </td>
+                </tr>
+                <tr>
+                <td width='20%'> Mysql </td>
+                <td><span class='sleft'><?php echo check_service("mysql");  ?></span> </td>
+                </tr>
+                </table>
 
             </center>
         </div>
+</div>
+        
 <?php include 'layout/mainpage-modal.php' ?>
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>
