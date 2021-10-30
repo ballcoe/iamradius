@@ -137,7 +137,7 @@ active
                                         <th><center>ชื่อกลุ่ม</center></th>
                                         <th><center>อัพโหลด (kbps)</center></th>
                                         <th><center>ดาวน์โหลด (kbps)</center></th>
-                                        <th><center>จำนวนครั้งต่อสมาชิก</center></th>
+                                        <th><center>จำนวนเครื่องที่เข้าใช้งานต่อผู้ใช้</center></th>
                                         <th><center>แก้ไข</center></th>
                                     </tr>
                                 </thead>
