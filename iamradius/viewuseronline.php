@@ -82,9 +82,10 @@ active
                         <thead>
                             <tr>
                                 <th width = "10%"><center>ลำดับ</center></th>
-                                <th width = "30%"><center>ชื่อผู้ใช้</center></th>
-                                <th width = "30%"><center>ชื่อ-สกุล</center></th>
-                                <th width = "30%"><center>เวลาเริ่มใช้งาน</center></th>
+                                <th width = "20%"><center>ชื่อผู้ใช้</center></th>
+                                <th width = "25%"><center>ชื่อ-สกุล</center></th>
+                                <th width = "20%"><center>Mac-Adddress</center></th>
+                                <th width = "25%"><center>เวลาเริ่มใช้งาน</center></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,6 +104,7 @@ active
                                 <td><center><?= $countOnlineList  ?></center></td>
                                 <td><center><?= $row["username"] ?></center> </td>
                                 <td><center><?= $row["firstname"]." ".$row["lastname"] ?></center> </td>
+                                <td><center><?= $row["callingstationid"] ?></center> </td>
                                 <td><center><?= $thdatetime ?></center></td>
                             </tr>
                             <?php } ?>
