@@ -60,6 +60,7 @@ mysqli_set_charset($conn, DB_CHARSET);
                   </div>
                   <br>
                   <h1 class="h6 text-gray-900 mb-4">- เปิดใช้ระบบ Authentication 1 มกราคม พ.ศ.2555 ท่านสามารถลงทะเบียนได้ที่ <a href ='register' target='_blank'> ลงทะเบียน </a></h1>
+                  <h1 class="h6 text-gray-900 mb-4">- ท่านสามารถแก้ไขข้อมูลสมาชิกของท่านได้ที่ <a href ='users' target='_blank'> แก้ไขข้อมูลสมาชิก </a></h1>
                   <h1 class="h6 text-gray-900 mb-4"><font color ='red'> - มีปัญหาในการใช้งาน ติดต่อ <a href="tel:09-2776-7217">09-2776-7217</a></font></h1>
                   <h1 class="h6 text-gray-900 mb-4"><font color ='red'> - ห้าม Fix IP โดยเด็ดขาด เพราะจะไม่สามารถ Login ได้ และหาก IP ชนกัน จะทำให้ทั้งระบบมีปัญหา </font></h1>
                   <h1 class="h6 text-gray-900 mb-4">- ขอความร่วมมือ ตั้งค่าโปรแกรมดาวน์โหลด เช่น IDM หรือ Flashget ให้ดาวน์โหลดทีละไฟล์ และตั้งค่าการเชื่อมต่อให้เป็น 1 โดยเฉพาะหากท่านเชื่อมต่อด้วยระบบ WiFi </h1>

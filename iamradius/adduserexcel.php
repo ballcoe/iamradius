@@ -48,13 +48,14 @@ active
 <?php include 'layout/mainpage-menu-12.php' ?> <!-- Report Main -->
 <?php include 'layout/mainpage-menu-13.php' ?> <!-- Report Show -->
 <?php include 'layout/mainpage-menu-14.php' ?> <!-- View User Online -->
-<?php include 'layout/mainpage-menu-15.php' ?> <!-- Top 10 User -->
-<?php include 'layout/mainpage-menu-16.php' ?> <!-- Maintanance Main -->
-<?php include 'layout/mainpage-menu-17.php' ?> <!-- Maintanance Show -->
-<?php include 'layout/mainpage-menu-18.php' ?> <!-- Change Name Orga -->
-<?php include 'layout/mainpage-menu-19.php' ?> <!-- Server Status -->
-<?php include 'layout/mainpage-menu-20.php' ?> <!-- PHPMYADMIN -->
-<?php include 'layout/mainpage-menu-21.php' ?> <!-- Menu End-->
+<?php include 'layout/mainpage-menu-15.php' ?> <!-- View User Report -->
+<?php include 'layout/mainpage-menu-16.php' ?> <!-- Top 10 User -->
+<?php include 'layout/mainpage-menu-17.php' ?> <!-- Maintanance Main -->
+<?php include 'layout/mainpage-menu-18.php' ?> <!-- Maintanance Show -->
+<?php include 'layout/mainpage-menu-19.php' ?> <!-- Change Name Orga -->
+<?php include 'layout/mainpage-menu-20.php' ?> <!-- Server Status -->
+<?php include 'layout/mainpage-menu-21.php' ?> <!-- PHPMYADMIN -->
+<?php include 'layout/mainpage-menu-22.php' ?> <!-- Menu End-->
 <?php include 'layout/mainpage-navbar.php' ?> 
 
 
@@ -67,8 +68,12 @@ active
               <li class="breadcrumb-item active" aria-current="page">เพิ่มสมาชิกจากไฟล์ Excel</li>
             </ol>
           </div>
-        <div class="card card-register mx-auto mt-5">
-          <div class="card-body">
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              เพิ่มสมาชิกจากไฟล์ Excel
+            </div>
+            <div class="card-body">
             <!--<h1>กำลังพัฒนา</h1>-->
             <?php
             require_once __DIR__.'/SimpleXLSX.php';

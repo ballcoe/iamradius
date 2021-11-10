@@ -47,14 +47,15 @@ active
 <?php include 'layout/mainpage-menu-13.php' ?> <!-- Report Show -->
 show
 <?php include 'layout/mainpage-menu-14.php' ?> <!-- View User Online -->
-<?php include 'layout/mainpage-menu-15.php' ?> <!-- Top 10 User -->
+<?php include 'layout/mainpage-menu-15.php' ?> <!-- View User Report -->
+<?php include 'layout/mainpage-menu-16.php' ?> <!-- Top 10 User -->
 active
-<?php include 'layout/mainpage-menu-16.php' ?> <!-- Maintanance Main -->
-<?php include 'layout/mainpage-menu-17.php' ?> <!-- Maintanance Show -->
-<?php include 'layout/mainpage-menu-18.php' ?> <!-- Change Name Orga -->
-<?php include 'layout/mainpage-menu-19.php' ?> <!-- Server Status -->
-<?php include 'layout/mainpage-menu-20.php' ?> <!-- PHPMYADMIN -->
-<?php include 'layout/mainpage-menu-21.php' ?> <!-- Menu End-->
+<?php include 'layout/mainpage-menu-17.php' ?> <!-- Maintanance Main -->
+<?php include 'layout/mainpage-menu-18.php' ?> <!-- Maintanance Show -->
+<?php include 'layout/mainpage-menu-19.php' ?> <!-- Change Name Orga -->
+<?php include 'layout/mainpage-menu-20.php' ?> <!-- Server Status -->
+<?php include 'layout/mainpage-menu-21.php' ?> <!-- PHPMYADMIN -->
+<?php include 'layout/mainpage-menu-22.php' ?> <!-- Menu End-->
 <?php include 'layout/mainpage-navbar.php' ?> 
 
 
@@ -68,21 +69,24 @@ active
             </ol>
           </div>
 
-            <div class="card card-register mx-auto mt-5">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-xl-2 col-lg-3">
-                      กรุณาเลือกวันที่ : 
-                    </div>
-                    <div class="col-xl-2 col-lg-3">
-                      <input type="date" onchange="changedate()" class="form-control" id="dayselect" value="<?php echo date('Y-m-d'); ?>">
-                    </div>
+            <div class="card shadow mb-4">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                รายงาน 10 อันดับ ดาวน์โหลด และ อัพโหลดสูงสุด ประจำวัน
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-xl-2 col-lg-3">
+                    กรุณาเลือกวันที่ : 
+                  </div>
+                  <div class="col-xl-2 col-lg-3">
+                    <input type="date" onchange="changedate()" class="form-control" id="dayselect" value="<?php echo date('Y-m-d'); ?>">
                   </div>
                 </div>
+              </div>
             </div>
             <br>
-            <div id="showdata">
-            </div>
+            <div id="showdata"></div>
 
 <?php include 'layout/mainpage-modal.php' ?>
 <script>

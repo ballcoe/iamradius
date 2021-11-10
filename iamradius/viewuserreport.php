@@ -47,8 +47,8 @@ active
 <?php include 'layout/mainpage-menu-13.php' ?> <!-- Report Show -->
 show
 <?php include 'layout/mainpage-menu-14.php' ?> <!-- View User Online -->
-active
 <?php include 'layout/mainpage-menu-15.php' ?> <!-- View User Report -->
+active
 <?php include 'layout/mainpage-menu-16.php' ?> <!-- Top 10 User -->
 <?php include 'layout/mainpage-menu-17.php' ?> <!-- Maintanance Main -->
 <?php include 'layout/mainpage-menu-18.php' ?> <!-- Maintanance Show -->
@@ -71,61 +71,65 @@ active
             <div class="card shadow mb-4">
               <div class="card-header">
                 <i class="fas fa-table"></i>
-                รายชื่อผู้ใช้ที่กำลังใช้งาน
+                ประวัติการใช้งาน
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                <?php
-                  $sqlOnlineList = "SELECT * FROM radacct,userinfo WHERE radacct.acctstoptime IS NULL AND radacct.username = userinfo.username ORDER BY radacct.acctstarttime DESC";
-                  $resultOnlineList = mysqli_query($conn, $sqlOnlineList);
-                  if (mysqli_num_rows($resultOnlineList) > 0) {
-                    ?>
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th width = "10%"><center>ลำดับ</center></th>
-                                <th width = "20%"><center>ชื่อผู้ใช้</center></th>
-                                <th width = "25%"><center>ชื่อ-สกุล</center></th>
-                                <th width = "20%"><center>Mac-Adddress</center></th>
-                                <th width = "25%"><center>เวลาเริ่มใช้งาน</center></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $countOnlineList = 0;
-                                while($row = $resultOnlineList->fetch_assoc()){
-                                    $countOnlineList++;
-                                    $year = substr($row["acctstarttime"],0,4);
-                                    $month = substr($row["acctstarttime"],5,2);
-                                    $day = substr($row["acctstarttime"],8,2);
-                                    $thdate = $day.'/'.$month.'/'.($year+543);
-                                    $thtime = substr($row["acctstarttime"],11,8);
-                                    $thdatetime = "วันที่ ".$thdate." เวลา ".$thtime." น." ;
-                            ?>
-                            <tr>
-                                <td><center><?= $countOnlineList  ?></center></td>
-                                <td><center><?= $row["username"] ?></center> </td>
-                                <td><center><?= $row["firstname"]." ".$row["lastname"] ?></center> </td>
-                                <td><center><?= $row["callingstationid"] ?></center> </td>
-                                <td><center><?= $thdatetime ?></center></td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                    <?php }else{ ?>
-                        <div class="bs-component">
-                            <div class="alert alert-danger">
-                                <strong>ขณะนี้ยังไม่มีสมาชิกใช้งานอยู่</strong>
-                            </div>
-                        </div>
-                    <?php } ?>
+                <div class="row">
+                  <div class="col-xl-2 col-lg-3">
+                    กรุณาเลือกผู้ใช้งาน : 
+                  </div>
+                  <div class="col-xl-4 col-lg-3">
+                    <select id="selectusername" name="username" class="select2-single-placeholder form-control" onchange="changeusername()">
+                        <option value=""></option>
+                        <?php   
+                          $sql2 ='SELECT userinfo.username FROM userinfo group by userinfo.username';
+                          $result2 = $conn->query($sql2);
+                          if ($result2->num_rows > 0) {
+                            // output data of each row
+                            while($row2 = $result2->fetch_assoc()) {
+                              echo "<option value='" . $row2["username"]. "'>" . $row2["username"]. "</option>";
+                            }
+                          } else {
+                            echo "0 results";
+                          }
+                        ?>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-3">
+                    <div class="table-responsive">
+                      <div class="datashow1"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
+
 <?php include 'layout/mainpage-modal.php' ?>
 <script>
-  $('#dataTable').dataTable();
+  $('#selectusername').select2({
+    placeholder: "กรุณาเลือกผู้ใช้งาน",
+    allowClear: true
+  });
+  changeusername();
+  $('#selectusername').on('change keyup paste', function() {
+    $(".datashow1").html('<center>กำลังโหลดข้อมูล.......</center>');
+  });
+  function changeusername(){
+    var selectusername = $('#selectusername').val();
+    //console.log(selectusername)
+    $.ajax({
+      url: "showdatareport.php?selectusername="+selectusername,
+      cache: false,
+      success: function(html){
+        $(".datashow1").html(html);
+      }
+    });
+  //console.log($('#selectusername').val());
+  }
 </script>
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>

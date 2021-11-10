@@ -30,7 +30,7 @@ include("config.php");
 }	
 ?>
 <?php
-$dayselect = $_GET['date'];
+              $dayselect = $_GET['date'];
               $arruserdown = [];
               $arruserup = [];
               $arrdownloads = [];
