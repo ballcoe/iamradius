@@ -62,10 +62,10 @@ active
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">สมาชิกที่ออนไลน์ขณะนี้</h1>
+            <h1 class="h3 mb-0 text-gray-800">ประวัติการใช้งาน</h1>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./"><i class="fas fa-home text-primary"></i></a></li>
-              <li class="breadcrumb-item active" aria-current="page">สมาชิกที่ออนไลน์ขณะนี้</li>
+              <li class="breadcrumb-item active" aria-current="page">ประวัติการใช้งาน</li>
             </ol>
           </div>
             <div class="card shadow mb-4">
