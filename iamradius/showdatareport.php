@@ -58,12 +58,16 @@ include("config.php");
                                     $thdate1 = $day1.'/'.$month1.'/'.($year1+543);
                                     $thtime1 = substr($row["acctstarttime"],11,8);
                                     $thdatetime1 = "วันที่ ".$thdate1." เวลา ".$thtime1." น." ;
-                                    $year2 = substr($row["acctstarttime"],0,4);
-                                    $month2 = substr($row["acctstarttime"],5,2);
-                                    $day2 = substr($row["acctstarttime"],8,2);
-                                    $thdate2 = $day2.'/'.$month2.'/'.($year2+543);
-                                    $thtime2 = substr($row["acctstarttime"],11,8);
-                                    $thdatetime2 = "วันที่ ".$thdate2." เวลา ".$thtime2." น." ;
+                                    if($row["acctstoptime"] != NULL){
+                                      $year2 = substr($row["acctstoptime"],0,4);
+                                      $month2 = substr($row["acctstoptime"],5,2);
+                                      $day2 = substr($row["acctstoptime"],8,2);
+                                      $thdate2 = $day2.'/'.$month2.'/'.($year2+543);
+                                      $thtime2 = substr($row["acctstoptime"],11,8);
+                                      $thdatetime2 = "วันที่ ".$thdate2." เวลา ".$thtime2." น." ;
+                                    }else{
+                                      $thdatetime2 = "ยังไม่ออกจากระบบ";
+                                    }
                             ?>
                             <tr>
                                 <td><center><?= $countOnlineList  ?></center></td>
