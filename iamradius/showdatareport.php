@@ -41,7 +41,8 @@ include("config.php");
                                 <th><center>ลำดับ</center></th>
                                 <th><center>ชื่อผู้ใช้</center></th>
                                 <th><center>ชื่อ-สกุล</center></th>
-                                <th><center>Mac-Adddress</center></th>
+                                <th><center>IP-Address</center></th>
+                                <th><center>Mac-Address</center></th>
                                 <th><center>เวลาเริ่มใช้งาน</center></th>
                                 <th><center>เวลาสิ้นสุดการใช้งาน</center></th>
                             </tr>
@@ -68,6 +69,7 @@ include("config.php");
                                 <td><center><?= $countOnlineList  ?></center></td>
                                 <td><center><?= $row["username"] ?></center> </td>
                                 <td><center><?= $row["firstname"]." ".$row["lastname"] ?></center> </td>
+                                <td><center><?= $row["framedipaddress"] ?></center> </td>
                                 <td><center><?= $row["callingstationid"] ?></center> </td>
                                 <td><center><?= $thdatetime1 ?></center></td>
                                 <td><center><?= $thdatetime2 ?></center></td>
