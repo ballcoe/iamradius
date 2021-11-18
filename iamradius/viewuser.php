@@ -121,54 +121,19 @@ active
                   </div>
                 </div>
                 <div class="table-responsive">
-                <?php
-                  $sqluser = "select userinfo.username,firstname,lastname,email,cid,groupname from userinfo,radcheck,radusergroup where (userinfo.username = radcheck.username) and (userinfo.username = radusergroup.username)";
-                  $resultuser = mysqli_query($conn, $sqluser);
-                  if (mysqli_num_rows($resultuser) > 0) {
-                    ?>
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width = "5%"><center>ลำดับ</center></th>
-                                <th width = "10%"><center>ชื่อผู้ใช้</center></th>
-                                <th width = "15%"><center>ชื่อ-สกุล</center></th>
-                                <th width = "22%"><center>อีเมลล์</center></th>
-                                <th width = "13%"><center>เลขบัตรประจำตัวประชาชน</center></th>
-                                <th width = "14%"><center>กลุ่ม</center></th>
-                                <th width = "21%"><center>แก้ไข</center></th>
+                                <th><center>ลำดับ</center></th>
+                                <th><center>ชื่อผู้ใช้</center></th>
+                                <th><center>ชื่อ-สกุล</center></th>
+                                <th><center>อีเมลล์</center></th>
+                                <th><center>เลขบัตรประจำตัวประชาชน</center></th>
+                                <th><center>กลุ่ม</center></th>
+                                <th><center>แก้ไข</center></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                                $countuser = 0;
-                                while($datauser = mysqli_fetch_object($resultuser)) { 
-                                $countuser++;
-                                $cidcut1 = substr($datauser->cid,0,6);
-                                $cidcut2 = substr($datauser->cid,10,3);
-                                $cidcentsor = $cidcut1."xxxx".$cidcut2;
-                            ?>
-                            <tr>
-                                <td width = "5%"><center><?= $countuser  ?></center></td>
-                                <td width = "10%"><center><?= $datauser->username ?> </center></td>
-                                <td width = "15%"><center><?= $datauser->firstname ?> <?= $datauser->lastname ?> </center></td>
-                                <td width = "22%"><center><?= $datauser->email ?></center></td>
-                                <td width = "13%"><center><?= $cidcentsor ?></center></td>
-                                <td width = "14%"><center><?= $datauser->groupname ?></center></td>
-                                <td width = "21%"><center>
-                                <a class='btn btn-primary' href='#' data-toggle='modal' onclick="ChangePassUserModal('<?php echo $datauser->username ?>')" data-target='#ChangePassUserModal' title='เปลี่ยนรหัสผ่าน'><i class="fas fa-key"></i></a>
-                                <a class='btn btn-success' href='#' data-toggle='modal' onclick='ChangeGroupUserModal("<?php echo $datauser->username ?>")' data-target='#ChangeGroupUserModal' title='เปลี่ยนกลุ่ม'><i class="fa fa-users"></i></a> 
-                                <a class='btn btn-danger' href='#' data-toggle='modal' onclick="deleteuser('<?php echo $datauser->username ?>')" data-target='#DeleteUserModal' title='ลบผู้ใช้'><i class="fa fa-trash"></i></a></center></td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
                     </table>
-                    <?php }else{ ?>
-                        <div class="bs-component">
-                            <div class="alert alert-danger">
-                                <strong>ขณะนี้ยังไม่มีสมาชิกในระบบ</strong>
-                            </div>
-                        </div>
-                    <?php } ?>
                 </div>
               </div>
             </div>
@@ -278,7 +243,75 @@ active
     function deleteuser(id){
       $('#id').val(id);
     }
-    $('#dataTable').dataTable();
+    $(document).ready(function() {
+        $('#dataTable1').dataTable({
+            "processing": true,
+            "ajax": "getuser.php",
+            "columns": [
+                {data: 'num'},
+                {data: 'username'},
+                {data: 'fullname'},
+                {data: 'email'},
+                {data: 'cid'},
+                {data: 'groupname'},
+                {data: 'username' , render : function ( data, type, row, meta )
+                  {
+                  return type === 'display'  ?
+                  '<center><a class="btn btn-primary" href="#" data-toggle="modal" onclick=ChangePassUserModal("'+data+'") data-target="#ChangePassUserModal" title="เปลี่ยนรหัสผ่าน"><i class="fas fa-key"></i></a><a class="btn btn-success" href="#" data-toggle="modal" onclick=ChangeGroupUserModal("'+data+'") data-target="#ChangeGroupUserModal" title="เปลี่ยนกลุ่ม"><i class="fa fa-users"></i></a><a class="btn btn-danger" href="#" data-toggle="modal" onclick=deleteuser("'+data+'") data-target="#DeleteUserModal" title="ลบผู้ใช้"><i class="fa fa-trash"></i></a></center>':"";
+                  }
+                },
+            ],
+            'columnDefs': [
+              {
+                  "targets": 0, // your case first column
+                  "className": "text-center",
+                  "width": "5%"
+              },
+              {
+                  "targets": 1, // your case first column
+                  "className": "text-center",
+                  "width": "7%"
+              },
+              {
+                  "targets": 2, // your case first column
+                  "className": "text-center",
+                  "width": "23%"
+              },
+              {
+                  "targets": 3, // your case first column
+                  "className": "text-center",
+                  "width": "20%"
+              },
+              {
+                  "targets": 4, // your case first column
+                  "className": "text-center",
+                  "width": "13%"
+              },
+              {
+                  "targets": 5, // your case first column
+                  "className": "text-center",
+                  "width": "15%"
+              },
+              {
+                "targets": 6, // your case first column
+                  "className": "text-center",
+                  "width": "18%"
+              }
+            ],
+            "language": {
+              "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+              "zeroRecords": "ไม่มีข้อมูล",
+              "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+              "sSearch": "ค้นหา",
+              "infoEmpty": "ไม่พบข้อมูลค้นหา",
+              "infoFiltered": "(จากทั้งหมด _MAX_ คน)",
+              "paginate": {
+                "next": "ถัดไป",
+                "previous": "ก่อนหน้า"
+              }
+            }
+      });
+    });
   </script>
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>
