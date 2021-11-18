@@ -79,7 +79,7 @@ include("config.php");
 <?php include 'layout/mainpage-menu-06.php' ?> <!-- Add User -->
 <?php include 'layout/mainpage-menu-07.php' ?> <!-- Add Excel --> 
 <?php include 'layout/mainpage-menu-08.php' ?> <!-- Group Main -->
-acive
+active
 <?php include 'layout/mainpage-menu-09.php' ?> <!-- Group Menu Show -->
 show
 <?php include 'layout/mainpage-menu-10.php' ?> <!-- All Group -->
