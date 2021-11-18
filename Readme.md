@@ -43,7 +43,7 @@ post_max_size = 2G
 ;;;;;;;;;;;;;;;;;;;
 max_execution_time = 3600
 max_input_time = 3600
-max_input_vars = 1000
+max_input_vars = 10000
 memory_limit = 512M
 
 ```
