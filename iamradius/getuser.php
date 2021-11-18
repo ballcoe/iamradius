@@ -28,7 +28,7 @@ if (!$_SESSION["UserID"]){
     exit;
 }
 // fetch records
-$sql = "select userinfo.username,firstname,lastname,email,cid,groupname from userinfo,radcheck,radusergroup where (userinfo.username = radcheck.username) and (userinfo.username = radusergroup.username)";
+$sql = "select userinfo.username,firstname,lastname,email,cid,groupname from userinfo left join radcheck on (userinfo.username = radcheck.username) left join radusergroup on (userinfo.username = radusergroup.username)";
 $result = mysqli_query($con, $sql);
 $i=0;
 $array = [];
