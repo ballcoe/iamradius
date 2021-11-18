@@ -38,6 +38,20 @@ CREATE TABLE `failip` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failip`
+--
+
+CREATE TABLE `failip_users` (
+  `fail_id` int(11) NOT NULL,
+  `fail_ip` varchar(30) NOT NULL,
+  `fail_try` int(10) NOT NULL,
+  `time` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `groupcolor`
 --
 
