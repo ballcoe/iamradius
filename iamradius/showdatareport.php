@@ -31,7 +31,7 @@ include("config.php");
 ?>
                 <?php
                   $selectusername = $_GET['selectusername'];
-                  $sqlOnlineList = "SELECT * FROM radacct,userinfo WHERE radacct.username = '$selectusername' AND radacct.username = userinfo.username ORDER BY radacct.acctstarttime DESC";
+                  $sqlOnlineList = "SELECT * FROM radacct,userinfo,radusergroup WHERE radacct.username = '$selectusername' AND (radacct.username = userinfo.username AND radusergroup.username = radacct.username) ORDER BY radacct.acctstarttime DESC";
                   $resultOnlineList = mysqli_query($conn, $sqlOnlineList);
                   if (mysqli_num_rows($resultOnlineList) > 0) {
                 ?>
@@ -81,15 +81,34 @@ include("config.php");
                             <?php } ?>
                         </tbody>
                     </table>
+                    <?php }else if($row["groupname"] = "Baned"){ ?>
+                        <div class="bs-component">
+                            <div class="alert alert-danger">
+                                <center><strong>สมาชิกที่ท่านเลือกถูกแบน</strong></center>
+                            </div>
+                        </div>
                     <?php }else{ ?>
                         <div class="bs-component">
                             <div class="alert alert-danger">
-                                <strong>สมาชิกที่ท่านเลือกยังไม่ได้มีการใช้งานในระบบ</strong>
+                                <center><strong>สมาชิกที่ท่านเลือกยังไม่ได้มีการใช้งานในระบบ</strong></center>
                             </div>
                         </div>
                     <?php } ?>
               
 
                     <script>
-                          $('#dataTable').dataTable();
+                          $('#dataTable').dataTable({
+                            "language": {
+                              "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+                              "zeroRecords": "ไม่มีข้อมูล",
+                              "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+                              "sSearch": "ค้นหา",
+                              "infoEmpty": "ไม่พบข้อมูลค้นหา",
+                              "infoFiltered": "(จากทั้งหมด _MAX_ รายการ)",
+                              "paginate": {
+                                "next": "ถัดไป",
+                                "previous": "ก่อนหน้า"
+                              }
+                            }
+                          });
                     </script>

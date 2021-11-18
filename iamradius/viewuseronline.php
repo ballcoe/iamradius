@@ -127,7 +127,20 @@ active
 
 <?php include 'layout/mainpage-modal.php' ?>
 <script>
-  $('#dataTable').dataTable();
+  $('#dataTable').dataTable({
+    "language": {
+    "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+    "zeroRecords": "ไม่มีข้อมูล",
+    "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+    "sSearch": "ค้นหา",
+    "infoEmpty": "ไม่พบข้อมูลค้นหา",
+    "infoFiltered": "(จากทั้งหมด _MAX_ คน)",
+    "paginate": {
+      "next": "ถัดไป",
+      "previous": "ก่อนหน้า"
+      }
+    }
+  });
 </script>
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>
