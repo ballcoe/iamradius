@@ -267,7 +267,7 @@ active
               {
                   "targets": 1, // your case first column
                   "className": "text-center",
-                  "width": "7%"
+                  "width": "5%"
               },
               {
                   "targets": 2, // your case first column
@@ -292,7 +292,7 @@ active
               {
                 "targets": 6, // your case first column
                   "className": "text-center",
-                  "width": "18%"
+                  "width": "20%"
               }
             ],
             "language": {

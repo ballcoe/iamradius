@@ -127,14 +127,6 @@ active
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <?php
-                            $sqlgroup1 = "select rp1.groupname,(select value from radgroupreply rp2 where rp2.groupname = rp1.groupname AND rp2.attribute = 'WISPr-Bandwidth-Max-Up' ) AS upbandwidth,
-                            (select value from radgroupreply rp3 where rp3.groupname = rp1.groupname AND rp3.attribute = 'WISPr-Bandwidth-Max-Down' ) AS downbandwidth,
-                            (select value from radgroupreply rp4 where rp4.groupname = rp1.groupname AND rp4.attribute = 'Port-Limit' ) AS PortLimit , color
-                            from radgroupreply rp1,groupcolor where rp1.groupname = groupcolor.groupname GROUP by rp1.groupname";
-                            $resultgroup1 = mysqli_query($conn, $sqlgroup1);
-                            if (mysqli_num_rows($resultgroup1) > 0) {
-                            ?>
                             <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -146,31 +138,7 @@ active
                                         <th><center>แก้ไข</center></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                        $countgroup = 0;
-                                        while($datagroup1 = mysqli_fetch_object($resultgroup1)) { 
-                                        $countgroup++;
-                                    ?>
-                                    <tr>
-                                        <td><center><?= $countgroup  ?></center></td>
-                                        <td><center><?= $datagroup1->groupname ?> </center></td>
-                                        <td><center><?= ($datagroup1->upbandwidth / 1024) ?> </center></td>
-                                        <td><center><?= ($datagroup1->downbandwidth / 1024) ?></center></td>
-                                        <td><center><?= $datagroup1->PortLimit ?></center></td>
-                                        <td><center><a class='btn btn-primary' onclick="setdata('<?php echo  $datagroup1->groupname ?>','<?php echo ($datagroup1->upbandwidth / 1024) ?>','<?php echo ($datagroup1->downbandwidth / 1024) ?>','<?php echo $datagroup1->PortLimit ?>','<?php echo $datagroup1->color ?>')" href='#'  data-toggle='modal' data-target='#ChangeGroupInfoModal' title='เปลี่ยนข้อมูลกลุ่ม'><i class="fa fa-edit"></i></a>
-                                        <a class='btn btn-danger' href='#' onclick="deletegroup('<?php echo  $datagroup1->groupname ?>')" data-toggle='modal' data-target='#DeleteGroupModal' title='ลบกลุ่ม'><i class="fa fa-trash"></i></a></center></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
                             </table>
-                            <?php }else{ ?>
-                                <div class="bs-component">
-                                    <div class="alert alert-danger">
-                                        <strong>ขณะนี้ยังไม่มีกลุ่มผู้ใช้</strong>
-                                    </div>
-                                </div>
-                            <?php } ?>
                         </div>
                       </div>
                     </div>
@@ -225,14 +193,76 @@ active
     </div>
 <?php include 'layout/mainpage-modal.php' ?>
     <script>
-        $('#dataTable2').dataTable();
-            function setdata(name,max,min,portse,color){
+        $(document).ready(function() {
+        $('#dataTable2').dataTable({
+            "processing": true,
+            "ajax": "getgroup.php",
+            "columns": [
+                {data: 'num'},
+                {data: 'groupname'},
+                {data: 'upload'},
+                {data: 'download'},
+                {data: 'portlimit'},
+                {data: 'groupname' , render : function ( data, type, row, meta )
+                  {
+                  return type === 'display'  ?
+                  '<center><a class="btn btn-primary" onclick=setdata("'+row.groupname+'","'+row.upload+'","'+row.download+'","'+row.portlimit+'","'+row.color+'") href="#"  data-toggle="modal" data-target="#ChangeGroupInfoModal" title="เปลี่ยนข้อมูลกลุ่ม"><i class="fa fa-edit"></i></a><a class="btn btn-danger" href="#" onclick=deletegroup("'+data+'") data-toggle="modal" data-target="#DeleteGroupModal" title="ลบกลุ่ม"><i class="fa fa-trash"></i></a></center>':"";
+                  }
+                },
+            ],
+            'columnDefs': [
+              {
+                  "targets": 0, // your case first column
+                  "className": "text-center",
+                  "width": "10%"
+              },
+              {
+                  "targets": 1, // your case first column
+                  "className": "text-center",
+                  "width": "19%"
+              },
+              {
+                  "targets": 2, // your case first column
+                  "className": "text-center",
+                  "width": "19%"
+              },
+              {
+                  "targets": 3, // your case first column
+                  "className": "text-center",
+                  "width": "15%"
+              },
+              {
+                  "targets": 4, // your case first column
+                  "className": "text-center",
+                  "width": "22%"
+              },
+              {
+                  "targets": 5, // your case first column
+                  "className": "text-center",
+                  "width": "15%"
+              },
+            ],
+            "language": {
+              "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+              "zeroRecords": "ไม่มีข้อมูล",
+              "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+              "sSearch": "ค้นหา",
+              "infoEmpty": "ไม่พบข้อมูลค้นหา",
+              "infoFiltered": "(จากทั้งหมด _MAX_ กลุ่ม)",
+              "paginate": {
+                "next": "ถัดไป",
+                "previous": "ก่อนหน้า"
+              }
+            }
+      });
+    });
+        function setdata(name,max,min,portse,color){
             $('#upload').val(max);
             $('#download').val(min);
             $('#profileuser').val(portse);
             $('#UserGroupColor').val(color);
             $('#id').val(name);
-            }
+        }
         function deletegroup(gname){
         //var txt;
         $('#idg').val(gname);
