@@ -310,7 +310,7 @@ function get_mask_addr($ifname) {
 
 ?>
 
-
+<br>
 <?php
         echo "<h3>General Information</h3>";
 ?>
@@ -334,7 +334,7 @@ function get_mask_addr($ifname) {
   </tr>
 </table>
 
-
+<br>
 <?php
         echo "<h3>Memory Information</h3>";
         $meminfo = get_memory();
@@ -362,7 +362,7 @@ function get_mask_addr($ifname) {
   </tr>
 </table>
 
-
+<br>
 <?php
         echo "<h3>Harddrive Information</h3>";
         $hddfreespace = get_hdd_freespace();
@@ -379,7 +379,7 @@ function get_mask_addr($ifname) {
   </tr>
 
 </table>
-
+<br>
 <?php
         echo "<h3>Network Interfaces</h3>";
         $iflist = get_interface_list();
@@ -434,7 +434,7 @@ function check_service($sname) {
 }
 
 ?>
-
+<br>
 <?php
 	echo "<h3>Service Status</h3>";
 ?>
