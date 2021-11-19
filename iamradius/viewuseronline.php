@@ -75,11 +75,6 @@ active
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <?php
-                  $sqlOnlineList = "SELECT * FROM radacct,userinfo WHERE radacct.acctstoptime IS NULL AND radacct.username = userinfo.username ORDER BY radacct.acctstarttime DESC";
-                  $resultOnlineList = mysqli_query($conn, $sqlOnlineList);
-                  if (mysqli_num_rows($resultOnlineList) > 0) {
-                    ?>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -91,56 +86,71 @@ active
                                 <th width = "22%"><center>เวลาเริ่มใช้งาน</center></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                                $countOnlineList = 0;
-                                while($row = $resultOnlineList->fetch_assoc()){
-                                    $countOnlineList++;
-                                    $year = substr($row["acctstarttime"],0,4);
-                                    $month = substr($row["acctstarttime"],5,2);
-                                    $day = substr($row["acctstarttime"],8,2);
-                                    $thdate = $day.'/'.$month.'/'.($year+543);
-                                    $thtime = substr($row["acctstarttime"],11,8);
-                                    $thdatetime = "วันที่ ".$thdate." เวลา ".$thtime." น." ;
-                            ?>
-                            <tr>
-                                <td><center><?= $countOnlineList  ?></center></td>
-                                <td><center><?= $row["username"] ?></center> </td>
-                                <td><center><?= $row["firstname"]." ".$row["lastname"] ?></center> </td>
-                                <td><center><?= $row["framedipaddress"] ?></center> </td>
-                                <td><center><?= $row["callingstationid"] ?></center> </td>
-                                <td><center><?= $thdatetime ?></center></td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
                     </table>
-                    <?php }else{ ?>
-                        <div class="bs-component">
-                            <div class="alert alert-danger">
-                                <strong>ขณะนี้ยังไม่มีสมาชิกใช้งานอยู่</strong>
-                            </div>
-                        </div>
-                    <?php } ?>
                 </div>
               </div>
             </div>
 
 <?php include 'layout/mainpage-modal.php' ?>
 <script>
-  $('#dataTable').dataTable({
-    "language": {
-    "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
-    "zeroRecords": "ไม่มีข้อมูล",
-    "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
-    "sSearch": "ค้นหา",
-    "infoEmpty": "ไม่พบข้อมูลค้นหา",
-    "infoFiltered": "(จากทั้งหมด _MAX_ คน)",
-    "paginate": {
-      "next": "ถัดไป",
-      "previous": "ก่อนหน้า"
-      }
-    }
-  });
+  $(document).ready(function() {
+        $('#dataTable').dataTable({
+            "processing": true,
+            "ajax": "getuseronline.php",
+            "columns": [
+                {data: 'num'},
+                {data: 'username'},
+                {data: 'fullname'},
+                {data: 'ip'},
+                {data: 'mac'},
+                {data: 'date'},
+            ],
+            'columnDefs': [
+              {
+                  "targets": 0, // your case first column
+                  "className": "text-center",
+                  "width": "10%"
+              },
+              {
+                  "targets": 1, // your case first column
+                  "className": "text-center",
+                  "width": "19%"
+              },
+              {
+                  "targets": 2, // your case first column
+                  "className": "text-center",
+                  "width": "19%"
+              },
+              {
+                  "targets": 3, // your case first column
+                  "className": "text-center",
+                  "width": "15%"
+              },
+              {
+                  "targets": 4, // your case first column
+                  "className": "text-center",
+                  "width": "15%"
+              },
+              {
+                  "targets": 5, // your case first column
+                  "className": "text-center",
+                  "width": "22%"
+              },
+            ],
+            "language": {
+              "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+              "zeroRecords": "ไม่มีข้อมูล",
+              "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+              "sSearch": "ค้นหา",
+              "infoEmpty": "ไม่พบข้อมูลค้นหา",
+              "infoFiltered": "(จากทั้งหมด _MAX_ คน)",
+              "paginate": {
+                "next": "ถัดไป",
+                "previous": "ก่อนหน้า"
+              }
+            }
+      });
+    });
 </script>
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>
