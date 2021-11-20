@@ -114,7 +114,7 @@ active
     placeholder: "กรุณาเลือกผู้ใช้งาน",
     allowClear: true
   });
-  changeusername();
+  //changeusername();
   $('#selectusername').on('change keyup paste', function() {
     $(".datashow1").html('<center>กำลังโหลดข้อมูล.......</center>');
   });
