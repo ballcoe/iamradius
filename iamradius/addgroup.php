@@ -144,7 +144,7 @@ active
                 </div>
                 <div class="form-group">
                   <div class="form-label-group">
-                    <input id="UserGroupLogin" name="UserGroupLogin" class="form-control" onkeypress="return isNumber(event);" placeholder="จำนวนครั้งต่อสมาชิกที่สามารถเข้าสู่ระบบ" required="required">
+                    <input id="UserGroupLogin" name="UserGroupLogin" class="form-control" onkeypress="return isNumber(event);" placeholder="จำนวนเครื่องที่เข้าใช้งานต่อผู้ใช้" required="required">
                     <span id="errUserGroupLogin"></span>
                   </div>
                 </div>
