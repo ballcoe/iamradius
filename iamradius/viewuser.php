@@ -178,7 +178,7 @@ active
         
         <form action="" method='POST'>
           <div class="form-group">
-                <select class="select2-single-placeholder form-control" id="selectgroup" name="selectgroup">
+                <select class="select2-single-placeholder form-control" id="selectgroup" name="selectgroup" required>
                   <option value="">เลือกกลุ่ม</option>
                   <?php   
                   $sql2 ='SELECT radgroupreply.groupname FROM radgroupreply group by radgroupreply.groupname UNION SELECT radgroupcheck.groupname FROM radgroupcheck group by radgroupcheck.groupname';
