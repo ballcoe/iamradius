@@ -4,7 +4,7 @@
         <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
               <b><a href="https://www.nadunhospital.com" target="_blank">Nadun Hospital</a></b><br>
-              Pitchapong Polyiam , Panya Panya Phongsringam
+              Pitchapong Polyiam , Panya Phongsringam
             </span>
           </div>
         </div>
