@@ -289,6 +289,12 @@ ALTER TABLE `failip`
   ADD PRIMARY KEY (`fail_id`);
 
 --
+-- Indexes for table `failip`
+--
+ALTER TABLE `failip_users`
+  ADD PRIMARY KEY (`fail_id`);
+
+--
 -- Indexes for table `groupcolor`
 --
 ALTER TABLE `groupcolor`
