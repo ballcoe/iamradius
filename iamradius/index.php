@@ -67,193 +67,214 @@ active
             </ol>
           </div>
 
-          <div class="row">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <a class = "text-xs font-weight-bold text-success text-uppercase mb-1" href="viewuseronline">สมาชิกที่ใช้งานอยู่</a></div>
-                                            <div class="h3 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                    $sqlOnlineList = "SELECT * FROM radacct,userinfo WHERE radacct.acctstoptime IS NULL AND radacct.username = userinfo.username ORDER BY radacct.acctstarttime";
-                                                    $resultOnlineList = mysqli_query($conn, $sqlOnlineList);
-                                                    if (mysqli_num_rows($resultOnlineList) > 0) {
-                                                        $countOnlineList = 0;
-                                                        while($dataOnlineList = mysqli_fetch_object($resultOnlineList)) { 
-                                                            $countOnlineList++;
-                                                        }
-                                                    }else{
-                                                        $countOnlineList = 0;
-                                                    }
-                                                    echo $countOnlineList;
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user fa-2x text-gray-300"></i>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="row">
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          <a class = "text-xs font-weight-bold text-success text-uppercase mb-1" href="viewuseronline">สมาชิกที่ใช้งานอยู่</a></div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                            $sqlOnlineList = "SELECT * FROM radacct,userinfo WHERE radacct.acctstoptime IS NULL AND radacct.username = userinfo.username ORDER BY radacct.acctstarttime";
+                            $resultOnlineList = mysqli_query($conn, $sqlOnlineList);
+                            if (mysqli_num_rows($resultOnlineList) > 0) {
+                              $countOnlineList = 0;
+                              while($dataOnlineList = mysqli_fetch_object($resultOnlineList)) { 
+                                $countOnlineList++;
+                              }
+                            }else{
+                              $countOnlineList = 0;
+                            }
+                            echo $countOnlineList;
+                            ?>
+                          </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                              <a class = "text-xs font-weight-bold text-primary text-uppercase mb-1" href="viewuser">สมาชิกทั้งหมด</a></div>
-                                            <div class="h3 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                                $sqlAllUser = "SELECT * FROM userinfo";
-                                                $resultAllUser = mysqli_query($conn, $sqlAllUser);
-                                                echo mysqli_num_rows($resultAllUser);
-                                            ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-circle fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                              <a class = "text-xs font-weight-bold text-info text-uppercase mb-1" href="viewgroup">กลุ่มทั้งหมด</a></div>
-                                            <div class="h3 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                    $sqlAllGroup = "SELECT * FROM radgroupreply group by groupname UNION SELECT * FROM radgroupcheck";
-                                                    $resultAllGroup = mysqli_query($conn, $sqlAllGroup);
-                                                    echo mysqli_num_rows($resultAllGroup);
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                              <a class = "text-xs font-weight-bold text-warning text-uppercase mb-1" href="userregistergroup">สมาชิกที่ยังไม่จัดกลุ่ม</a></div>
-                                            <div class="h3 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                                $sqlAllUserChange = "SELECT * FROM radusergroup where groupname = 'register'";
-                                                $resultAllUserChange = mysqli_query($conn, $sqlAllUserChange);
-                                                echo mysqli_num_rows($resultAllUserChange);
-                                            ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-times fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                      </div>
                     </div>
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">จำนวนผู้ใช้งานต่อวัน</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                    <?php
-                                        $arruser = [];
-                                        $arrdate = [];
-                                            $sqlcountuser = "select count(ra.username) as countuser , date(ra.acctstarttime) as dateuser from radacct ra group by dateuser desc limit 15";
-                                            $resultuser = $conn->query($sqlcountuser);
-                                            if ($resultuser->num_rows > 0) {
-                                              // output data of each row
-                                              while($row = $resultuser->fetch_assoc()) {
-                                                $year = substr($row["dateuser"],0,4);
-                                                $month = substr($row["dateuser"],5,2);
-                                                $day = substr($row["dateuser"],8,2);
-                                                $thdate = $day.'/'.$month.'/'.($year+543);
-                                                $arruser[] = $row["countuser"];
-                                                $arrdate[] = $thdate;
-                                               // echo  $row["cgroup"].$row["groupname"].  "<br>";
-                                              }
-                                            } else {
-                                              echo "";
-                                            }
-                                    ?>
-                                    <hr>
-                                </div>
-                            </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                          <a class = "text-xs font-weight-bold text-primary text-uppercase mb-1" href="viewuser">สมาชิกทั้งหมด</a></div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                              $sqlAllUser = "SELECT * FROM userinfo";
+                              $resultAllUser = mysqli_query($conn, $sqlAllUser);
+                              echo mysqli_num_rows($resultAllUser);
+                            ?>
+                          </div>
                         </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">จำนวนสมาชิกต่อกลุ่ม</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                        <?php
-                                        $arrgroupname = [];
-                                        $arrtext = [];
-                                        $arrcolor = [];
-                                            $sqlcountgroup = "SELECT COUNT(username) AS cgroup, radusergroup.groupname as groupname , color FROM radusergroup , groupcolor WHERE groupcolor.groupname = radusergroup.groupname GROUP BY groupname";
-                                            $result = $conn->query($sqlcountgroup);
-
-                                            if ($result->num_rows > 0) {
-                                              // output data of each row
-                                              while($row = $result->fetch_assoc()) {
-                                                $arrgroupname[] = $row["cgroup"];
-                                                $arrtext[] = $row["groupname"];
-                                                $arrcolor[] = $row["color"];
-                                               // echo  $row["cgroup"].$row["groupname"].  "<br>";
-                                              }
-                                            } else {
-                                              echo "";
-                                            }
-                                        ?>
-                                    <hr>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                        ชี้ที่สีเพื่อดูจำนวนสมาชิกของกลุ่ม
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      <div class="col-auto">
+                        <i class="fas fa-user-circle fa-2x text-gray-300"></i>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                          <a class = "text-xs font-weight-bold text-info text-uppercase mb-1" href="viewgroup">กลุ่มทั้งหมด</a></div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                              $sqlAllGroup = "SELECT * FROM radgroupreply group by groupname UNION SELECT * FROM radgroupcheck";
+                              $resultAllGroup = mysqli_query($conn, $sqlAllGroup);
+                              echo mysqli_num_rows($resultAllGroup);
+                            ?>
+                          </div>
+                        </div>
+                      <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Pending Requests Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                          <a class = "text-xs font-weight-bold text-warning text-uppercase mb-1" href="userregistergroup">สมาชิกที่ยังไม่จัดกลุ่ม</a></div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                              $sqlAllUserChange = "SELECT * FROM radusergroup where groupname = 'register'";
+                              $resultAllUserChange = mysqli_query($conn, $sqlAllUserChange);
+                              echo mysqli_num_rows($resultAllUserChange);
+                            ?>
+                          </div>
+                        </div>
+                      <div class="col-auto">
+                        <i class="fas fa-user-times fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">จำนวนผู้ใช้งานต่อวัน</h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="myAreaChart"></canvas>
+                    </div>
+                    <?php
+                      $arruser = [];
+                      $arrdate = [];
+                      $sqlcountuser = "select count(ra.username) as countuser , date(ra.acctstarttime) as dateuser from radacct ra group by dateuser desc limit 15";
+                      $resultuser = $conn->query($sqlcountuser);
+                      if ($resultuser->num_rows > 0) {
+                      // output data of each row
+                        while($row = $resultuser->fetch_assoc()) {
+                          $year = substr($row["dateuser"],0,4);
+                          $month = substr($row["dateuser"],5,2);
+                          $day = substr($row["dateuser"],8,2);
+                          $thdate = $day.'/'.$month.'/'.($year+543);
+                          $arruser[] = $row["countuser"];
+                          $arrdate[] = $thdate;
+                      // echo  $row["cgroup"].$row["groupname"].  "<br>";
+                         }
+                      } else {
+                        echo "";
+                      }
+                    ?>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              <!-- Pie Chart -->
+              <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">จำนวนสมาชิกต่อกลุ่ม</h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4">
+                      <canvas id="myPieChart"></canvas>
+                    </div>
+                    <?php
+                      $arrgroupname = [];
+                      $arrtext = [];
+                      $arrcolor = [];
+                      $sqlcountgroup = "SELECT COUNT(username) AS cgroup, radusergroup.groupname as groupname , color FROM radusergroup , groupcolor WHERE groupcolor.groupname = radusergroup.groupname GROUP BY groupname";
+                      $result = $conn->query($sqlcountgroup);
+                      if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                          $arrgroupname[] = $row["cgroup"];
+                          $arrtext[] = $row["groupname"];
+                          $arrcolor[] = $row["color"];
+                         // echo  $row["cgroup"].$row["groupname"].  "<br>";
+                        }
+                      } else {
+                        echo "";
+                      }
+                    ?>
+                    <hr>
+                    <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                        ชี้ที่สีเพื่อดูจำนวนสมาชิกของกลุ่ม
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                  <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    รายชื่อผู้ใช้ที่กำลังใช้งาน
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th width = "5%"><center>ลำดับ</center></th>
+                            <th width = "14%"><center>ชื่อผู้ใช้</center></th>
+                            <th width = "12%"><center>IP-Address</center></th>
+                            <th width = "12%"><center>Mac-Address</center></th>
+                            <th width = "16%"><center>วัน/เวลาที่เริ่มใช้งาน</center></th>
+                            <th width = "8%"><center>เวลาที่ใช้งาน</center></th>
+                            <!-- <th width = "14%"><center>Vender</center></th> -->
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 <?php include 'layout/mainpage-modal.php' ?>
 <script type="text/javascript">
@@ -416,6 +437,71 @@ var myLineChart = new Chart(ctx, {
   }
 });
 
+$(document).ready(function() {
+        $('#dataTable').dataTable({
+            "processing": true,
+            "ajax": "getuseronline.php",
+            "columns": [
+                {data: 'num'},
+                {data: 'allname'},
+                {data: 'ip'},
+                {data: 'mac'},
+                {data: 'date'},
+                {data: 'timeonline'},
+                // {data: 'vender'},
+            ],
+            'columnDefs': [
+              {
+                  "targets": 0, // your case first column
+                  "className": "text-center",
+                  "width": "5%"
+              },
+              {
+                  "targets": 1, // your case first column
+                  "className": "text-center",
+                  "width": "14%"
+              },
+              {
+                  "targets": 2, // your case first column
+                  "className": "text-center",
+                  "width": "12%"
+              },
+              {
+                  "targets": 3, // your case first column
+                  "className": "text-center",
+                  "width": "12%"
+              },
+              {
+                  "targets": 4, // your case first column
+                  "className": "text-center",
+                  "width": "16%"
+              },
+              {
+                  "targets": 5, // your case first column
+                  "className": "text-center",
+                  "width": "8%"
+              },
+              /*
+              {
+                  "targets": 7, // your case first column
+                  "className": "text-center",
+                  "width": "14%"
+              },*/
+            ],
+            "language": {
+              "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
+              "zeroRecords": "ไม่มีข้อมูล",
+              "info": "แสดงหน้าที่ _PAGE_ จาก _PAGES_ หน้า",
+              "sSearch": "ค้นหา",
+              "infoEmpty": "ไม่พบข้อมูลค้นหา",
+              "infoFiltered": "(จากทั้งหมด _MAX_ คน)",
+              "paginate": {
+                "next": "ถัดไป",
+                "previous": "ก่อนหน้า"
+              }
+            }
+      });
+    });
 </script>   
 <?php include 'layout/mainpage-footer.php' ?>
 <?php include 'layout/mainpage-end.php' ?>

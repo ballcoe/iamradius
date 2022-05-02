@@ -78,12 +78,14 @@ active
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width = "10%"><center>ลำดับ</center></th>
-                                <th width = "19%"><center>ชื่อผู้ใช้</center></th>
-                                <th width = "19%"><center>ชื่อ-สกุล</center></th>
-                                <th width = "15%"><center>IP-Address</center></th>
-                                <th width = "15%"><center>Mac-Address</center></th>
-                                <th width = "22%"><center>เวลาเริ่มใช้งาน</center></th>
+                                <th width = "5%"><center>ลำดับ</center></th>
+                                <th width = "14%"><center>ชื่อผู้ใช้</center></th>
+                                <th width = "12%"><center>IP-Address</center></th>
+                                <th width = "12%"><center>Mac-Address</center></th>
+                                <th width = "8%"><center>Downloads</center></th>
+                                <th width = "8%"><center>Uploads</center></th>
+                                <th width = "8%"><center>เวลาที่ใช้งาน</center></th>
+                                <!-- <th width = "14%"><center>Vender</center></th> -->
                             </tr>
                         </thead>
                     </table>
@@ -99,43 +101,56 @@ active
             "ajax": "getuseronline.php",
             "columns": [
                 {data: 'num'},
-                {data: 'username'},
-                {data: 'fullname'},
+                {data: 'allname'},
                 {data: 'ip'},
                 {data: 'mac'},
-                {data: 'date'},
+                {data: 'download'},
+                {data: 'upload'},
+                {data: 'timeonline'},
+                // {data: 'vender'},
             ],
             'columnDefs': [
               {
                   "targets": 0, // your case first column
                   "className": "text-center",
-                  "width": "10%"
+                  "width": "5%"
               },
               {
                   "targets": 1, // your case first column
                   "className": "text-center",
-                  "width": "19%"
+                  "width": "14%"
               },
               {
                   "targets": 2, // your case first column
                   "className": "text-center",
-                  "width": "19%"
+                  "width": "12%"
               },
               {
                   "targets": 3, // your case first column
                   "className": "text-center",
-                  "width": "15%"
+                  "width": "12%"
               },
               {
                   "targets": 4, // your case first column
                   "className": "text-center",
-                  "width": "15%"
+                  "width": "8%"
               },
               {
                   "targets": 5, // your case first column
                   "className": "text-center",
-                  "width": "22%"
+                  "width": "8%"
               },
+              {
+                  "targets": 6, // your case first column
+                  "className": "text-center",
+                  "width": "8%"
+              },
+              /*
+              {
+                  "targets": 7, // your case first column
+                  "className": "text-center",
+                  "width": "14%"
+              },*/
             ],
             "language": {
               "lengthMenu": "แสดง _MENU_ แถวต่อหน้า",
